@@ -15,7 +15,7 @@ model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', m
 
 st.title('EPP predictor')
 
-all_df = pd.read_csv('all_data.csv')
+all_df = pd.read_csv('all_data_final.csv')
 
 def get_data(db,lat,long):
     lat = round(lat*4)/4

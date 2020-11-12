@@ -1,10 +1,9 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from keras.models import model_from_json
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.metrics import categorical_crossentropy
+import pickle
 import base64
+
 
 @st.cache(allow_output_mutation=True)
 def get_base64_of_bin_file(bin_file):
@@ -28,12 +27,8 @@ def set_png_as_page_bg(png_file):
 
 set_png_as_page_bg('background.png')
 
-
-with open('model.json', 'r') as json_file: 
-    loaded_model_json = json_file.read()
-model = model_from_json(loaded_model_json)
-model.load_weights("model.h5")
-model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['accuracy'])
+filename = 'finalized_model_xgboost.sav'
+model = pickle.load(open(filename, 'rb'))
 
 st.title('EPP predictor')
 
@@ -58,9 +53,8 @@ if 0<=lat<=90 and 0<=longi<=180:
         if longi>0:
             longi = 360-longi
     a = (get_data(all_df,lat,longi))
-    a = a.iloc[:,[2,3,4,7,8]]
-    st.write(a)
-    prediction = model.predict([a])
+    a = a.iloc[:,[2,3,4,5,6,7,8]]
+    prediction = model.predict(a)
     prediction = float(prediction)*100
     prediction = round(prediction,3)
     st.write(f'There is a {prediction}% chance that a solar plant built there will be successful')

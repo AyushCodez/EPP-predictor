@@ -45,14 +45,16 @@
         <script>
 
             var mymap = L.map('map_1').setView([13, 78], 5);
-
+            var mapBounds = L.latLngBounds([
+                    [-180, 90], // southwest
+                    [180, -90] // northeast
+                ]);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
             {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 noWrap: true,
-                minZoom: mapMinZoom,
-                maxZoom: mapMaxZoom,
                 bounds: mapBounds,
+                minZoom: 1
             }).addTo(mymap);
             
 

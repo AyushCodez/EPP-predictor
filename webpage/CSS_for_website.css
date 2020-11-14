@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald|Staatliches');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+html, body, .image {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+.image {
+    background-image: url('assets/background.png');
+    background-color: #77E4FC;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+}
+._heading {
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 48px;
+    color: #ffffff;
+}
+._p {
+    display: inline-block;
+    text-align: left;
+    font-family: 'Roboto',sans-serif;
+    color: #ffffff;
+    font-weight: 600;
+    margin-top: 10px;
+    background-color: rgba(92, 92, 92, 0.7);
+    font-size: 18px;
+    padding: 12px;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+._footer {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 16px;
+    height: 50px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    color: #000000;
+    font-weight: 1000;
+    vertical-align:middle;
+    background-color: #F5F379;
+}
+.container {
+    text-align: left;
+    display: block;
+    padding-left: 10px;
+}
+
+#map_1 { 
+    height: 70%; 
+    width: 80%;
+}
+._ans {
+    width: 80%;
+}
+/* ._table {
+    font-family: 'Staatliches', cursive;
+    height: 400px;
+    padding: 30px;
+    font-size: 24px;
+    font-weight: 1000;
+    margin: 10px;
+}
+._button {
+    background-color: #F9EC6F;
+    border: none;
+    color: #8E05F9;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 2px 25px;
+    cursor: pointer;
+    font-family: 'Staatliches', cursive;
+}
+._button:hover{
+    background-color: #FFD656;
+    color:#000000;
+}
+label {
+    font-size: 18px;
+}
+.dialogFlow {
+    padding-right: 10px;
+    text-align: left;
+    display: inline-block;
+    border: none;
+    width: 340px;
+    height: 470px;
+}
+input {
+    font-family: 'Staatliches', cursive;
+    font-size: 18px;
+    border:solid;
+    width: 300;
+    height: 30px;
+    padding: 8px;
+}
+._file {
+    background-color: #ffffff;
+    color: #000;
+    border: solid;
+    width: 300px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 10px;
+    padding-bottom: 30px;
+    margin: 2px 25px;
+    cursor: pointer;
+    font-family: 'Staatliches', cursive;
+}
+._nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #FF770C;
+    overflow: hidden;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2;
+    size: fixed;
+    width: 100%;
+    font-size: 18px;
+    font-family: 'Staatliches', cursive;
+}
+li {
+  float: right;
+  border-right: 1px solid orange;
+}
+.nav_links {
+  display: block;
+  padding: 8px;
+  background-color: #FF770C;
+  text-align: center;
+  padding: 14px 16px;
+  color: #000000;
+  text-decoration: none;
+}
+.nav_links:hover {
+    background-color: #DFA374;
+}
+.active_nav {
+  background-color: #FFD6B6;
+}
+.bold {
+    font-size: 46px;
+    color: #000000;
+}
+.small {
+    font-size: 32px;
+    color: #888888;
+} */

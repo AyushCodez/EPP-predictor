@@ -9,7 +9,7 @@ model = pickle.load(open(filename, 'rb'))
 
 st.title('EPP predictor')
 
-all_df = pd.read_csv(r'C:\Users\Ayush\Documents\GitHub\EPP-predictor\all_data_final.csv')
+all_df = pd.read_csv(r'/Users/Pranjal/Desktop/LatestProjects/EPP-predictor/all_data_final.csv')
 
 def get_data(db,lat,longi):
     lat = round(lat*4)/4

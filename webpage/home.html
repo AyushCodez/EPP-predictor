@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <!-- Imorting custom CSS. -->
+        <link rel="stylesheet" href = "CSS_for_website.css"> 
+        <!-- Import leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -> leaflet JS-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+
+        <title>EPP Predictor</title>
+
+    </head>
+
+    <body>
+        <div class="image">
+            <div class="_heading">EPP Predictor</div>
+
+            <div class="container">
+                <p class="_p">Please choose latitude and longitude below, alternatively type here:</p>
+                
+                <input class="_p" id="latitude" type="text"></input>
+                <input class="_p", id="longitude" type="text"></input>
+                
+                <button class="_button" onclick="onSubmit()">Submit</button>
+
+                <input type="button" value="Jump there" onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)">
+                <input class="_p _ans" id="ans" type="text" disabled="true"></input>
+                <div id="map_1"></div>
+                
+            </div>
+
+        </div>
+
+
+        <footer class="_footer">
+            Copyright (c) 2020 Ayush Gupta, Pranjal Rastogi. All Rights Reserved.
+        </footer>
+
+
+        <script>
+
+            var mymap = L.map('map_1').setView([13, 78], 3);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+            {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
+            
+
+            marker = L.marker([13,78], {draggable: true}).addTo(mymap)
+                .bindPopup('Drag me to the position!')
+
+            // event handlers
+            marker.on('dragend', function (e) {
+                updateLatLng(marker.getLatLng().lat, marker.getLatLng().lng);
+            });
+
+            mymap.on('click', function (e) {
+                marker.setLatLng(e.latlng);
+                updateLatLng(marker.getLatLng().lat, marker.getLatLng().lng);
+            });
+            
+            function updateLatLng(lat,lng, reverse) {
+                if(reverse) {
+                    marker.setLatLng([lat,lng]);
+                    mymap.panTo([lat,lng]);
+                } else {
+                    document.getElementById('latitude').value = marker.getLatLng().lat;
+                    document.getElementById('longitude').value = marker.getLatLng().lng;
+                    mymap.panTo([lat,lng]);
+                }
+            }
+
+            function onSubmit() {
+
+                var currentLat = marker.getLatLng().lat;
+                var currentLong = marker.getLatLng().lng;
+                
+
+                currentLong = currentLong % 360 // gives us -180 -> 180 for actual map, but 0->- or 0>360
+
+
+                console.log(currentLat);
+                console.log(currentLong);
+                
+                
+                
+                fetch(`http://127.0.0.1:5000/${currentLat}/${currentLong}`)
+                    .then(function (response) {
+                        return response.json();
+                    }).then(function (text) {
+                        console.log('GET response:');
+                        console.log(text['text']); 
+                        document.getElementById('ans').value = text['text'];
+                    });
+            }
+        </script>
+
+
+    </body>
+</html>

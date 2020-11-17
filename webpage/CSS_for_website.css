@@ -42,6 +42,12 @@ html, body, .image {
     padding-left: 30px;
     padding-right: 30px;
 }
+/* ._ptext {
+    font-family: 'Roboto',sans-serif;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 18px;
+} */
 ._footer {
     font-family: 'Montserrat', sans-serif;
     text-align: center;

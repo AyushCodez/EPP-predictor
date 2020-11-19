@@ -22,15 +22,38 @@
 
             <div class="container">
                 <div class="_p">
-                    <p>Please choose latitude and longitude below, alternatively type here:</p>
-                
-                    <input id="latitude" type="text"></input>
-                    <input id="longitude" type="text"></input>
+                    <table>
+                        
+                        <tr>
+                            <td> <p class="_ptext">Please choose latitude and longitude below, alternatively type here:</p></td></tr>
+                        <tr>
+                            <td><div id="map_1"></div></td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><div>Lat: </div></td>
+                                        <td><input id="latitude" type="text"></input></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td><div>Long: </div></td>
+                                        <td><input id="longitude" type="text"></input></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><button class="_button" onclick="onSubmit()">Submit</button></td>
+                                        <td><input class="_button" type="button" value="Jump there" onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)"></td>
+                                    </tr>
+                                </table>
+                                
+                            </td>
+                        </tr>
+                        
+
+                    </table>
                     
-                    <button class="_button" onclick="onSubmit()">Submit</button>
-                    <input class="_button" type="button" value="Jump there" onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)">
+                    
                     <input class="_p _ans" id="ans" type="text" disabled="true"></input>
-                    <div id="map_1"></div>
                 </div>
 
             </div>

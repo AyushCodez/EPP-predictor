@@ -42,12 +42,12 @@ html, body, .image {
     padding-left: 30px;
     padding-right: 30px;
 }
-/* ._ptext {
+._ptext {
     font-family: 'Roboto',sans-serif;
     color: #ffffff;
     font-weight: 600;
     font-size: 18px;
-} */
+}
 ._footer {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
@@ -67,12 +67,21 @@ html, body, .image {
 }
 
 #map_1 { 
-    height: 70%; 
-    width: 80%;
+    height: 300px; 
+    width: 600px;
+    position: relative;
+    float: left;
 }
 ._ans {
-    width: 80%;
+    width: 100%;
 }
+/* .wrapper {
+    position: relative;
+} */
+#longitude {
+    top: 0;
+}
+
 /* ._table {
     font-family: 'Staatliches', cursive;
     height: 400px;

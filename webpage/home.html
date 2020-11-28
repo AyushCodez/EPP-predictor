@@ -98,12 +98,30 @@
             });
             
             function updateLatLng(lat,lng, reverse) {
+
+                var currentLat = marker.getLatLng().lat;
+                var currentLong = marker.getLatLng().lng;
+
+                if (currentLat < -90) { currentLat = -90; }
+                    if (currentLat > 90) { currentLat = 90; }
+
+                    if (currentLong > 180) {
+                        while (currentLong > 180) {
+                            currentLong -= 360
+                        }
+                    }
+                    if (currentLong < -180) {
+                        while (currentLong < -180) {
+                            currentLong += 360
+                        }
+                    }
+
                 if(reverse) {
                     marker.setLatLng([lat,lng]);
                     mymap.panTo([lat,lng]);
                 } else {
-                    document.getElementById('latitude').value = Math.round(marker.getLatLng().lat);
-                    document.getElementById('longitude').value = Math.round(marker.getLatLng().lng);
+                    document.getElementById('latitude').value = Math.round(currentLat);
+                    document.getElementById('longitude').value = Math.round(currentLong);
                     mymap.panTo([lat,lng]);
                 }
             }

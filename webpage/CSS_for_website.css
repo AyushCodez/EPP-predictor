@@ -2,17 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-html, body, .image {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-}
+* { 
+    margin: 0 auto 0 auto; /* GLOBAL RESET */ 
+    padding: 0; 
+    box-sizing: border-box;
+} 
 .image {
     background-image: url('assets/background.png');
     background-color: #77E4FC;
-    background-position: center;
     background-repeat: no-repeat;
-    position: relative;
+    position: fixed;
+    height: 100%;
+    flex: 100%;
+    width: 100%;
     background-size: 100% 100%;
     -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
@@ -35,148 +37,157 @@ html, body, .image {
     color: #ffffff;
     font-weight: 600;
     margin-top: 10px;
+    width: 100%;
+    margin-right: 10px;
     background-color: rgba(92, 92, 92, 0.7);
     font-size: 18px;
     padding: 12px;
     margin-bottom: 10px;
     padding-left: 30px;
     padding-right: 30px;
+    padding-bottom: 10px;
 }
 ._ptext {
     font-family: 'Roboto',sans-serif;
     color: #ffffff;
     font-weight: 600;
+    text-align: left;
     font-size: 18px;
 }
 ._footer {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     font-size: 16px;
-    height: 50px;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    height: 5%;
     color: #000000;
+    position: relative;
     font-weight: 1000;
-    vertical-align:middle;
+    flex: 5%;
+    vertical-align: middle;
     background-color: #F5F379;
 }
 .container {
-    text-align: left;
-    display: block;
     padding-left: 10px;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
-
+.otable {
+    width: 100%;
+    text-align: center;
+}
 #map_1 { 
     height: 300px; 
     width: 600px;
     position: relative;
-    float: left;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #000000;
 }
 ._ans {
     width: 100%;
+    display: inline-block;
+    border-style: none;
+    background-color: #000000;
 }
-/* .wrapper {
-    position: relative;
-} */
+.oans {
+    text-align: center;
+}
 #longitude {
     top: 0;
 }
-
-/* ._table {
-    font-family: 'Staatliches', cursive;
-    height: 400px;
-    padding: 30px;
-    font-size: 24px;
-    font-weight: 1000;
+.inp {
+    width: 90%;
+    border-style: none;
+    border-radius: 50px;
+    background-color: #2e2d53;
     margin: 10px;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 10px 15px 10px 15px;
 }
 ._button {
-    background-color: #F9EC6F;
+    background-color: #060606;
     border: none;
-    color: #8E05F9;
-    padding: 15px 32px;
+    color: #F5F379;
+    padding: 15px 15px;
+    border-radius: 50px;
     text-align: center;
     text-decoration: none;
-    font-size: 18px;
-    margin: 2px 25px;
+    font-size: 14px;
     cursor: pointer;
-    font-family: 'Staatliches', cursive;
+    font-family: 'Roboto', sans-serif;
+    transition-duration: 0.4s;
 }
 ._button:hover{
-    background-color: #FFD656;
-    color:#000000;
+    background-color: #3F3F6F;
+    color:#ffffff;
 }
-label {
-    font-size: 18px;
-}
-.dialogFlow {
-    padding-right: 10px;
-    text-align: left;
-    display: inline-block;
-    border: none;
-    width: 340px;
-    height: 470px;
-}
-input {
-    font-family: 'Staatliches', cursive;
-    font-size: 18px;
-    border:solid;
-    width: 300;
-    height: 30px;
-    padding: 8px;
-}
-._file {
-    background-color: #ffffff;
-    color: #000;
-    border: solid;
-    width: 300px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px 10px;
-    padding-bottom: 30px;
-    margin: 2px 25px;
-    cursor: pointer;
-    font-family: 'Staatliches', cursive;
-}
-._nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #FF770C;
-    overflow: hidden;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 2;
-    size: fixed;
+._jump {
     width: 100%;
-    font-size: 18px;
-    font-family: 'Staatliches', cursive;
 }
-li {
-  float: right;
-  border-right: 1px solid orange;
+._inner_table {
+    padding: 10px;
 }
-.nav_links {
-  display: block;
-  padding: 8px;
-  background-color: #FF770C;
-  text-align: center;
-  padding: 14px 16px;
-  color: #000000;
-  text-decoration: none;
+.submit {
+    width: 100%;
+    margin: 10px;
+    margin-top: 20px;
+    border-radius: 50px;
 }
-.nav_links:hover {
-    background-color: #DFA374;
+.opa {
+    opacity: 0.4;
 }
-.active_nav {
-  background-color: #FFD6B6;
+.flbo {
+    position: fixed;
+    height: 100%;
+    flex-wrap: wrap;
 }
-.bold {
-    font-size: 46px;
-    color: #000000;
+
+ /* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #ac4444;
+    color: rgb(255, 255, 255); /* White text color */
+    text-align: center; 
+    border-radius: 2px;
+    padding: 16px;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 900;
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
 }
-.small {
-    font-size: 32px;
-    color: #888888;
-} */
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+  
+  /* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+  
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+  
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+  
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+} 

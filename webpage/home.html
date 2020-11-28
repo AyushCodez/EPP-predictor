@@ -1,4 +1,8 @@
+<!DOCTYPE html>
 <html>
+
+    <meta charset="UTF-8">
+
     <head>
         <!-- Imorting custom CSS. -->
         <link rel="stylesheet" href = "CSS_for_website.css"> 
@@ -16,56 +20,59 @@
 
     </head>
 
-    <body>
-        <div class="image">
+    <body class="flbo">
+        <div class="image"> 
+            <!-- Background div -->
             <div class="_heading">EPP Predictor</div>
 
             <div class="container">
                 <div class="_p">
-                    <table>
-                        
-                        <tr>
-                            <td> <p class="_ptext">Please choose latitude and longitude below, alternatively type here:</p></td></tr>
-                        <tr>
-                            <td><div id="map_1"></div></td>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td><div>Lat: </div></td>
-                                        <td><input id="latitude" type="text"></input></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td><div>Long: </div></td>
-                                        <td><input id="longitude" type="text"></input></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><button class="_button" onclick="onSubmit()">Submit</button></td>
-                                        <td><input class="_button" type="button" value="Jump there" onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)"></td>
-                                    </tr>
-                                </table>
-                                
-                            </td>
-                        </tr>
-                        
-
-                    </table>
+                    <div class="otable">
+                        <table class='_table'>
+                            
+                            <tr>
+                                <td colspan=2> 
+                                    <p class="_ptext">Please choose a location below:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><div id="map_1"></div></td>
+                                <td>
+                                    <table class="_inner_table">
+                                        <tr>
+                                            <td><div class="_ptext">Latitude: </div></td>
+                                            <td><input id="latitude" type="text" class="inp"></input></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td><div class="_ptext">Longitude: </div></td>
+                                            <td><input id="longitude" type="text" class="inp"></input></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>
+                                                <button class="_button _jump" onclick="jump()">JUMP THERE</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan=2>
+                                    <button class="_button submit" onclick="onSubmit()">SUBMIT</button>
+                                </td> 
+                            </tr>
+                        </table>
+                    </div>
                     
-                    
-                    <input class="_p _ans" id="ans" type="text" disabled="true"></input>
+                    <div class="oans">
+                        <input class="_p _ans" id="ans" type="text" disabled="true"></input>
+                    </div>
                 </div>
-
             </div>
 
         </div>
-
-
-        <footer class="_footer">
-            Copyright (c) 2020 Ayush Gupta, Pranjal Rastogi. All Rights Reserved.
-        </footer>
-
-
+        <div id="snackbar">text</div>
+        <!-- Javascript -->
         <script>
 
             var mymap = L.map('map_1').setView([13, 78], 3);
@@ -74,10 +81,11 @@
             {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             }).addTo(mymap);
-            
-
+        
             marker = L.marker([13,78], {draggable: true}).addTo(mymap)
                 .bindPopup('Drag me to the position!')
+            document.getElementById('latitude').value = Math.round(marker.getLatLng().lat);
+            document.getElementById('longitude').value = Math.round(marker.getLatLng().lng);
 
             // event handlers
             marker.on('dragend', function (e) {
@@ -94,8 +102,8 @@
                     marker.setLatLng([lat,lng]);
                     mymap.panTo([lat,lng]);
                 } else {
-                    document.getElementById('latitude').value = marker.getLatLng().lat;
-                    document.getElementById('longitude').value = marker.getLatLng().lng;
+                    document.getElementById('latitude').value = Math.round(marker.getLatLng().lat);
+                    document.getElementById('longitude').value = Math.round(marker.getLatLng().lng);
                     mymap.panTo([lat,lng]);
                 }
             }
@@ -104,32 +112,62 @@
 
                 var currentLat = marker.getLatLng().lat;
                 var currentLong = marker.getLatLng().lng;
-                
-                if (currentLat < -90) { currentLat = -90; }
-                if (currentLat > 90) { currentLat = 90; }
-                
-                if (currentLong > 180) {
-                    while (currentLong > 180) {
-                        currentLong -= 360
-                    }
+                var error = false
+                try {
+                    currentLat = Number(currentLat)
+                    currentLong = Number(currentLong)
                 }
-                if (currentLong < -180) {
-                    while (currentLong < -180) {
-                        currentLong += 360
-                    }
+                catch (e) {
+                    error = true
+                    showSnack("Please enter a valid longitude and latitude!")
                 }
 
-                console.log(currentLat);
-                console.log(currentLong);                
-                
-                fetch(`http://127.0.0.1:5000/${currentLat}/${currentLong}`)
+                if (!error) {
+
+                    if (currentLat < -90) { currentLat = -90; }
+                    if (currentLat > 90) { currentLat = 90; }
+                    
+                    if (currentLong > 180) {
+                        while (currentLong > 180) {
+                            currentLong -= 360
+                        }
+                    }
+                    if (currentLong < -180) {
+                        while (currentLong < -180) {
+                            currentLong += 360
+                        }
+                    }
+                    
+                    fetch(`http://127.0.0.1:5000/${currentLat}/${currentLong}`)
                     .then(function (response) {
                         return response.json();
-                    }).then(function (text) {
-                        console.log('GET response:');
-                        console.log(text['text']); 
-                        document.getElementById('ans').value = text['text'];
-                    });
+                    }).catch(function(e) {
+                        console.log(e);
+                        document.getElementById('ans').value = "";
+                        showSnack("Internal Server Error!")
+                    }).then(function(v) {
+                        document.getElementById('ans').value = v['text'];
+                    })
+                }
+                
+            }
+            function jump (){
+                lat = document.getElementById('latitude').value
+                long = document.getElementById('longitude').value
+                try {
+                    lat = Number(lat)
+                    long = Number(long)              
+                    updateLatLng(lat,long,1)
+                }
+                catch (e) {
+                    showSnack("Please enter a valid longitude and latitude!")
+                }
+            }
+            function showSnack(text) {
+                let snck = document.getElementById("snackbar");
+                snck.innerHTML = text
+                snck.className = "show";
+                setTimeout(function(){ snck.className = snck.className.replace("show", ""); }, 3000);
             }
         </script>
 

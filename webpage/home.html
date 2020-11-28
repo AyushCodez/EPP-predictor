@@ -84,8 +84,8 @@
         
             marker = L.marker([13,78], {draggable: true}).addTo(mymap)
                 .bindPopup('Drag me to the position!')
-            document.getElementById('latitude').value = Math.round(marker.getLatLng().lat);
-            document.getElementById('longitude').value = Math.round(marker.getLatLng().lng);
+            document.getElementById('latitude').value = marker.getLatLng().lat.toFixed(2);
+            document.getElementById('longitude').value = marker.getLatLng().lng.toFixed(2);
 
             // event handlers
             marker.on('dragend', function (e) {
@@ -120,8 +120,8 @@
                     marker.setLatLng([lat,lng]);
                     mymap.panTo([lat,lng]);
                 } else {
-                    document.getElementById('latitude').value = Math.round(currentLat);
-                    document.getElementById('longitude').value = Math.round(currentLong);
+                    document.getElementById('latitude').value = currentLat.toFixed(2);
+                    document.getElementById('longitude').value = currentLong.toFixed(2);
                     mymap.panTo([lat,lng]);
                 }
             }
